@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{%block content%}
+
+<div class="page-header" style="background: url(assets/img/banner1.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-wrapper">
+                    <h2 class="product-title">Details</h2>
+                    <ol class="breadcrumb">
+                        <li><a href="#">Home /</a></li>
+                        <li class="current">Details</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="section-padding">
+    <div class="container">
+        
+            <div class="product-info row">
+                <div class="col-lg-8 col-md-12 col-xs-12">
+                    <div class="ads-details-wrapper">
+                        
+                            <div id="owl-demo" class="owl-carousel owl-theme">
+                                
+                                    <div class="item">
+                                        <div class="product-img">
+                                            <img class="img-fluid" src="/{{one_product.image}}" alt="">
+                                        </div>
+                                        <span class="price">${{one_product.price}}</span>
+                                    </div>    
+                                    
+                            </div>
+                        
+                    </div>
+                    <div class="details-box">
+                        <div class="ads-details-info">
+                            <h2>{{one_product.title}}</h2>
+                            <div class="details-meta">
+                                <span><a href="#"><i class="lni-alarm-clock"></i>{{one_product.created_date | date:"Y-m-d"}} pm</a></span>
+                                <span><a href="#"><i class="lni-map-marker"></i>{{one_product.city}}</a></span>
+                                <span><a href="#"><i class="lni-eye"></i> 299 View</a></span>
+                            </div>
+                            <p class="mb-4">{{one_product.description}}</p>
+                            <h4 class="title-small mb-3">Specification:</h4>
+                            <ul class="list-specification">
+                                <li><i class="lni-check-mark-circle"></i> 256GB PCIe flash storage</li>
+                                <li><i class="lni-check-mark-circle"></i> 2.7 GHz dual-core Intel Core i5</li>
+                                <li><i class="lni-check-mark-circle"></i> Turbo Boost up to 3.1GHz</li>
+                                <li><i class="lni-check-mark-circle"></i> Intel Iris Graphics 6100</li>
+                                <li><i class="lni-check-mark-circle"></i> 8GB memory</li>
+                                <li><i class="lni-check-mark-circle"></i> 10 hour battery life</li>
+                                <li><i class="lni-check-mark-circle"></i> 13.3" Retina Display</li>
+                                <li><i class="lni-check-mark-circle"></i> 1 Year international warranty</li>
+                            </ul>
+                            
+                        </div>
+                        <div class="tag-bottom">
+                            <div class="float-left">
+                                <ul class="advertisement">
+                                    <li>
+                                        <p><strong><i class="lni-folder"></i> Categories:</strong> <a
+                                                href="#">{{one_product.category}}</a></p>
+                                    </li>
+                                    <li>
+                                        {% if condition == 1%}
+                                            <p><strong><i class="lni-archive"></i> Condition:</strong> New</p>
+                                        {% else %}
+                                            <p><strong><i class="lni-archive"></i> Condition:</strong> New</p>
+                                        {% endif %}
+
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                            <div class="float-right">
+                                <div class="share">
+                                    <div class="social-link">
+                                        <a class="facebook" data-toggle="tooltip" data-placement="top" title="facebook"
+                                            href="#"><i class="lni-facebook-filled"></i></a>
+                                        <a class="twitter" data-toggle="tooltip" data-placement="top" title="twitter"
+                                            href="#"><i class="lni-twitter-filled"></i></a>
+                                        <a class="linkedin" data-toggle="tooltip" data-placement="top" title="linkedin"
+                                            href="#"><i class="lni-linkedin-fill"></i></a>
+                                        <a class="google" data-toggle="tooltip" data-placement="top" title="google plus"
+                                            href="#"><i class="lni-google-plus"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-xs-12">
+
+                    <aside class="details-sidebar">
+                        <div class="widget">
+                            <h4 class="widget-title">Ad Posted By</h4>
+                            <div class="agent-inner">
+                                <div class="agent-title">
+                                        <div class="agent-photo">
+                                            <a href="#"><img src="/{{one_product.user_image}}" alt=""></a>
+                                        </div>
+                                            
+                                    
+                                    <div class="agent-details">
+                                        <h3><a href="#">{{one_product.user}}</a></h3>
+                                        <span><i class="lni-phone-handset"></i>{{one_product.phone_number}}</span>
+                                    </div>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Your Email">
+                                <input type="text" class="form-control" placeholder="Your Phone">
+                                <p>I'm interested in this property [ID 123456] and I'd like to know more details.</p>
+                                <button class="btn btn-common fullwidth mt-4">Send Message</button>
+                            </div>
+                        </div>
+
+                        <div class="widget">
+                            <h4 class="widget-title">More Ads From Seller</h4>
+                            <ul class="posts-list">
+                                {% for product in products%}
+                                <li>
+                                    <div class="widget-thumb">
+                                        <a href="{% url 'ads_details' product_id=product.id %}"><img src="/{{product.image}}" alt="" /></a>
+                                    </div>
+                                    <div class="widget-content">
+                                        <h4><a href="{% url 'ads_details' product_id=product.id %}">{{product.title}}</a></h4>
+                                        <div class="meta-tag">
+                                            <span>
+                                                <a href="#"><i class="lni-user"></i> {{product.user | slice:"5"}}</a>
+                                            </span>
+                                            <span>
+                                                <a href="#"><i class="lni-map-marker"></i>{{product.city | slice:"5"}}</a>
+                                            </span>
+                                            <span>
+                                                <a href="#"><i class="lni-tag"></i>{{product.category}}</a>
+                                            </span>
+                                        </div>
+                                        <h4 class="price">${{product.price}}</h4>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </aside>
+
+                </div>
+            </div>
+        
+
+    </div>
+    
+</div>
+
+
+<section class="subscribes section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="subscribes-inner">
+                    <div class="icon">
+                        <i class="lni-pointer"></i>
+                    </div>
+                    <div class="sub-text">
+                        <h3>Subscribe to Newsletter</h3>
+                        <p>and receive new ads in inbox</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <form>
+                    <div class="subscribe">
+                        <input class="form-control" name="EMAIL" placeholder="Enter your Email" required=""
+                            type="email">
+                        <button class="btn btn-common" type="submit">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{%endblock%}
